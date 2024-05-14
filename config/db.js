@@ -9,13 +9,13 @@ const pool = mysql.createPool({
   password: process.env.DB_PASSWORD,
 });
 
-let sql = "SELECT * FROM users;";
+// let sql = "SELECT * FROM users;";
 
-pool.execute(sql, function (err, result) {
-  if (err) throw err;
+// pool.execute(sql, function (err, result) {
+//   if (err) throw err;
 
-  console.log(result);
-  console.log("hello");
-});
+//   console.log(result);
+//   console.log("hello");
+// });
 
 module.exports = pool.promise();

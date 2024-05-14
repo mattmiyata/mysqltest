@@ -1,7 +1,14 @@
 const User = require("../models/User");
 
 exports.getAllUsers = async (req, res, next) => {
-  res.send("Get all users route");
+  try {
+    let [user, _] = await User.findAll();
+
+    res.status(200).json({ user });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
 };
 
 exports.createNewUser = async (req, res, next) => {
@@ -25,9 +32,9 @@ exports.getUserById = async (req, res, next) => {
   try {
     let { idusers } = req.body;
 
-    let user = await User.findUser(idusers);
+    let [user, _] = await User.findUser(idusers);
 
-    res.status(201).json(user);
+    res.status(201).json({ user });
   } catch (error) {
     console.log(error);
     next(error);
